@@ -1,21 +1,38 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var styles = require('../styles');
+var styles = require('../styles/forecastStyles');
+var Day = require('./Day');
+var Moment = require('moment');
 
 function Forecast(props) {
   
   if (props.isLoading === true) {
     return (
-      <p>LOADING</p>
+      <div>
+      <div style={styles.forecastWrapper}>
+        <h1 style={styles.cityName}>Loading...</h1>
+      </div>
+    </div>
     )
   }
 
   return(
-    <div>Here's a forecast...</div>
+    <div>
+      <div style={styles.forecastWrapper}>
+        <h1 style={styles.cityName}>{props.city}</h1>
+        <p style={styles.selectADayBanner}>Select a day</p>
+        <div style={styles.dayListWrapper}>
+          {props.forecastInfo.map(function(individualDay,index){
+            return <Day key={index} icon={individualDay.weather[0].icon} date={Moment().add(index,'days').format('dddd, MMM D')} />
+          })}  
+        </div>
+      </div>
+    </div>
   )
 }
 
 Forecast.propTypes = {
+  city: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   forecastInfo: PropTypes.array.isRequired
 }
