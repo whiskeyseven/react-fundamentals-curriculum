@@ -16,19 +16,28 @@ var ForecastContainer = React.createClass({
     var city = this.props.routeParams.city;
     wxHelpers.getForecast(city)
       .then(function(forecast){
-        console.log(forecast);
         this.setState({
           isLoading: false,
           forecast: forecast
         })
       }.bind(this))
   },
+  handleDayClick: function(index,date) {
+    this.context.router.push({
+      pathname: '/detail/'+this.props.routeParams.city,
+      state: {
+        forecast: this.state.forecast[index],
+        date: date
+      }
+    })
+  },
   render: function() {
     return (
       <Forecast
         city={this.props.routeParams.city}
         isLoading={this.state.isLoading}
-        forecastInfo={this.state.forecast} />
+        forecastInfo={this.state.forecast}
+        onDayClick={this.handleDayClick} />
     )
   }
 });

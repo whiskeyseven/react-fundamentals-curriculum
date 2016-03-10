@@ -3,7 +3,7 @@ var axios = require('axios');
 var apiKey = "4a49444774e3043172a9c672f7f938f5";
 
 function getForecastUrl(city) {
-  return 'http://api.openweathermap.org/data/2.5/forecast/daily?q='+city+'&type=accurate&APPID='+apiKey+'&cnt=5';
+  return 'http://api.openweathermap.org/data/2.5/forecast/daily?q='+city+'&type=accurate&APPID='+apiKey+'&cnt=5&units=imperial';
 }
 
 function getDetail(city) {

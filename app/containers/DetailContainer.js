@@ -1,13 +1,14 @@
 var React = require('react');
 var styles = require('../styles');
+var Details = require('../components/Details');
 
 var DetailContainer = React.createClass({
-  
   render: function() {
     return (
-      <div>
-        <h1>DetailContainer.js</h1>
-      </div>
+      <Details 
+        stats={this.props.location.state.forecast} 
+        date={this.props.location.state.date}
+        city={this.props.routeParams.city} />
     )
   }
 });

@@ -38,6 +38,13 @@ var forecastStyles = {
     fontSize: '30px',
     color: '#333',
     fontWeight: '100'
+  },
+  statsContainer: {
+    fontSize: '34px',
+    fontWeight: '100',
+    maxWidth: '400px',
+    margin: '0 auto',
+    textAlign: 'center'
   }
 }
 

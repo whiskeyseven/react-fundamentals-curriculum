@@ -3,6 +3,11 @@ var PropTypes = React.PropTypes;
 var styles = require('../styles/forecastStyles');
 var Day = require('./Day');
 var Moment = require('moment');
+var Link = require('react-router').Link;
+
+var handleClick = function(i,date,props) {
+  props.onDayClick(i,date);
+}
 
 function Forecast(props) {
   
@@ -23,7 +28,11 @@ function Forecast(props) {
         <p style={styles.selectADayBanner}>Select a day</p>
         <div style={styles.dayListWrapper}>
           {props.forecastInfo.map(function(individualDay,index){
-            return <Day key={index} icon={individualDay.weather[0].icon} date={Moment().add(index,'days').format('dddd, MMM D')} />
+            return <Day 
+                      key={index}
+                      icon={individualDay.weather[0].icon}
+                      date={Moment().add(index,'days').format('dddd, MMM D')}
+                      onClick={handleClick.bind(this,index,Moment().add(index,'days').format('dddd, MMM D'),props)} />
           })}  
         </div>
       </div>

@@ -4,7 +4,7 @@ var PropTypes = React.PropTypes;
 
 function Day(props) {
   return(
-    <div style={styles.individualDayWrapper}>
+    <div style={styles.individualDayWrapper} onClick={props.onClick}>
       <img style={styles.dayIcon} src={'./app/images/weather-icons/'+props.icon+'.svg'} alt="Weather" />
       <h2 style={styles.dayDate}>{props.date}</h2>
     </div>
@@ -13,7 +13,8 @@ function Day(props) {
 
 Day.propTypes = {
   icon: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired
+  date: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
 module.exports = Day;
